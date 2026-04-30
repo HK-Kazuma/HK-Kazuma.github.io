@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kazuma | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --fg: #1a1a1a;
+      --muted: #888;
+      --accent: #2a2a2a;
+      --line: #e0ddd7;
+      --tag-bg: #eeece8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'DM Mono', 'Noto Sans JP', monospace;
+      font-weight: 300;
+      line-height: 1.8;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--fg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.15s ease forwards;
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 8vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-desc {
+      font-size: 0.92rem;
+      color: #555;
+      max-width: 480px;
+      line-height: 1.9;
+    }
+
+    /* ── Section ── */
+    section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--line);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.25s; }
+    section:nth-child(2) { animation-delay: 0.35s; }
+    section:nth-child(3) { animation-delay: 0.45s; }
+    section:nth-child(4) { animation-delay: 0.55s; }
+    section:nth-child(5) { animation-delay: 0.65s; }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 0.92rem;
+      color: #444;
+      line-height: 2;
+    }
+
+    /* ── Skills ── */
+    .skill-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+    }
+
+    .skill-category {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 90px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      border-radius: 2px;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.6rem;
+      color: var(--fg);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Projects ── */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 1rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+    .project-item:first-child { padding-top: 0; }
+    .project-item:last-child { border-bottom: none; }
+    .project-item:hover { opacity: 0.6; }
+
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-stack .tag {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.5rem;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+
+    .tag--team {
+      color: #4a7c59 !important;
+      border-color: #a8c9b3 !important;
+      background: #f0f7f2 !important;
+    }
+
+    .tag--solo {
+      color: #5a6e99 !important;
+      border-color: #b0bede !important;
+      background: #f0f3fa !important;
+    }
+
+    .tag--wip {
+      color: #9a6b2e !important;
+      border-color: #d9bc8a !important;
+      background: #fdf6ea !important;
+    }
+
+    .project-arrow {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-top: 0.2rem;
+    }
+
+    /* ── Certs ── */
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.88rem;
+    }
+
+    .cert-name { color: var(--fg); }
+    .cert-year { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
+
+    /* ── Contact ── */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      font-size: 0.88rem;
+      color: var(--fg);
+      transition: opacity 0.2s;
+    }
+    .contact-link:hover { opacity: 0.5; }
+
+    .contact-link-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 60px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 500px) {
+      .skill-row { flex-direction: column; gap: 0.4rem; }
+      .skill-category { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <nav>
+      <a class="nav-logo" href="#">Kazuma</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+      <p class="hero-label">Portfolio</p>
+      <h1>Building things<br>with curiosity.</h1>
+      <p class="hero-desc">
+        情報系学部3年生。AIやアプリ開発に興味を持ち、個人・チーム双方でプロダクト開発に取り組んでいます。
+        「まず動いてみること」を大切に、試行錯誤しながらスキルを積み上げています。
+      </p>
+    </div>
+
+    <section id="about">
+      <p class="section-label">About</p>
+      <p class="about-text">
+        京都橘大学で情報系を専攻。生成AIの進化をきっかけにAI・機械学習への関心が深まり、
+        G検定取得、実際にプロダクトを作ることでしか見えてこない課題と向き合いながら開発経験を積んでいます。
+        将来はAI分野でグローバルに活躍することを目標に、英語学習にも取り組み中。
+      </p>
+    </section>
+
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <div class="skill-group">
+        <div class="skill-row">
+          <span class="skill-category">Language</span>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Framework</span>
+          <div class="tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">React Native</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Expo</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">AI / ML</span>
+          <div class="tags">
+            <span class="tag">Gemini API</span>
+            <span class="tag">Claude API</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">OCR</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Infra</span>
+          <div class="tags">
+            <span class="tag">Supabase</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="section-label">Works</p>
+      <div class="projects">
+
+        <a class="project-item" href="#" target="_blank">
+          <div>
+            <p class="project-name">AI Memo → Todo App</p>
+            <p class="project-desc">
+              手書きメモをAI-OCRで読み取り、LLMがタスクに自動変換するiOSアプリ。
+              初めての個人開発プロジェクト。
+            </p>
+            <div class="project-stack">
+              <span class="tag">React Native</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">OCR</span>
+              <span class="tag">LLM</span>
+              <span class="tag tag--team">チーム開発</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a class="project-item" href="#" target="_blank">
+          <div>
+            <p class="project-name">目覚まし同盟</p>
+            <p class="project-desc">
+              グループで起床を管理するアラームアプリ。起床確認後にアプリをブロックする機能を実装。
+              iOS / Android対応予定。
+            </p>
+            <div class="project-stack">
+              <span class="tag">React Native</span>
+              <span class="tag">Expo</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Firebase</span>
+              <span class="tag tag--solo">個人開発</span>
+              <span class="tag tag--wip">開発中</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a class="project-item" href="#" target="_blank">
+          <div>
+            <p class="project-name">Feynman Learning App</p>
+            <p class="project-desc">
+              「AIに教える」ことで理解を深めるフェインマン学習法アプリ。
+              LLMが知識と理解度を2段階で評価する仕組みを実装予定。
+            </p>
+            <div class="project-stack">
+              <span class="tag">Next.js</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag tag--solo">個人開発</span>
+              <span class="tag tag--wip">開発中</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a class="project-item" href="#" target="_blank">
+          <div>
+            <p class="project-name">AI料理提案アプリ</p>
+            <p class="project-desc">
+              冷蔵庫の食材写真をもとにAIがレシピを生成するPWAアプリ。4人チーム開発。設計段階から参加。
+            </p>
+            <div class="project-stack">
+              <span class="tag">Next.js</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag">PWA</span>
+              <span class="tag tag--team">チーム開発</span>
+              <span class="tag tag--wip">開発中</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+    <section id="certs">
+      <p class="section-label">Certifications</p>
+      <div class="cert-list">
+        <div class="cert-item">
+          <span class="cert-name">G検定（ジェネラリスト検定）</span>
+          <span class="cert-year">JDLA</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-name">2級建築施工管理技士補</span>
+          <span class="cert-year">国家資格</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://github.com/yourusername" target="_blank">
+          <span class="contact-link-label">GitHub</span>
+          <span>https://github.com/HK-Kazuma</span>
+        </a>
+        <a class="contact-link" href="mailto:your@email.com">
+          <span class="contact-link-label">Email</span>
+          <span>astonmartin3924@gmail.com</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Kazuma. Built with HTML & CSS.
+    </footer>
+
+  </div>
+</body>
+</html>
