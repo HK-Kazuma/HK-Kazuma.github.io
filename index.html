@@ -172,19 +172,22 @@
       gap: 0;
     }
 
+    .project-entry {
+      border-bottom: 1px solid var(--line);
+    }
+    .project-entry:last-child { border-bottom: none; }
+
     .project-item {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: start;
       gap: 1rem;
       padding: 1.6rem 0;
-      border-bottom: 1px solid var(--line);
       text-decoration: none;
       color: inherit;
       transition: opacity 0.2s;
     }
-    .project-item:first-child { padding-top: 0; }
-    .project-item:last-child { border-bottom: none; }
+    .project-entry:first-child .project-item { padding-top: 0; }
     .project-item:hover { opacity: 0.6; }
 
     .project-name {
@@ -236,6 +239,33 @@
       font-size: 0.85rem;
       color: var(--muted);
       padding-top: 0.2rem;
+    }
+
+    /* ── Project Detail ── */
+    .project-detail {
+      padding: 0 0 1.6rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-detail-section {
+      margin-bottom: 0.8rem;
+    }
+    .project-detail-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-detail-heading {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .project-detail-text {
+      font-size: 0.82rem;
+      color: #444;
+      line-height: 1.9;
     }
 
     /* ── Certs ── */
@@ -375,97 +405,177 @@
       <p class="section-label">Works</p>
       <div class="projects">
 
-        <a class="project-item" href="https://github.com/geekcamp-meatpie/meatlist.git" target="_blank">
-          <div>
-            <p class="project-name">Meatlist</p>
-            <p class="project-desc">
-              手書きメモをAI-OCRで読み取り、LLMがタスクに自動変換するwebアプリ。
-              初めてのチーム開発プロジェクトでの作品。
-            </p>
-            <div class="project-stack">
-              <span class="tag">python</span>
-              <span class="tag">OCR</span>
-              <span class="tag">LLM</span>
-              <span class="tag tag--team">チーム開発</span>
+        <div class="project-entry">
+          <a class="project-item" href="https://github.com/geekcamp-meatpie/meatlist.git" target="_blank">
+            <div>
+              <p class="project-name">Meatlist</p>
+              <p class="project-desc">
+                手書きメモをAI-OCRで読み取り、LLMがタスクに自動変換するwebアプリ。
+                初めてのチーム開発プロジェクトでの作品。
+              </p>
+              <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">OCR</span>
+                <span class="tag">LLM</span>
+                <span class="tag tag--team">チーム開発</span>
+              </div>
+            </div>
+            <span class="project-arrow">↗</span>
+          </a>
+          <div class="project-detail">
+            <div class="project-detail-section">
+              <p class="project-detail-heading">なぜ作ったか</p>
+              <p class="project-detail-text">
+                チームでプロダクトを作ってみたいという思いから開発を始めた。社会問題を解決するプロダクトを作るのはハードルが高いため、身の回りの課題に着目。パソコンが使えない状況でメモ帳に書いたメモを、後からパソコンでまとめ直す作業が負担に感じていたことから、本プロダクトの開発に至った。
+              </p>
+            </div>
+            <div class="project-detail-section">
+              <p class="project-detail-heading">工夫した点</p>
+              <p class="project-detail-text">
+                開発期間が2週間という制限があったため、チームメンバー全員が経験のあるPythonをベースに開発を進めた。手書き文字の認識には従来のOCR技術ではなく、最新のAIを活用したOCRを採用し、認識精度の向上を図った。
+              </p>
             </div>
           </div>
-          <span class="project-arrow">↗</span>
-        </a>
+        </div>
 
-        <a class="project-item" href="https://github.com/HK-Kazuma/AI-dailynews.git" target="_blank">
-          <div>
-            <p class="project-name">Daily News Digest</p>
-            <p class="project-desc">
-              毎朝7時に興味のあるトピックのニュースをGmailに自動送信するツール。
-              GitHub Actionsで定期実行し、Claude Haiku APIで記事の選定・要約・翻訳を行う。
-            </p>
-            <div class="project-stack">
-              <span class="tag">Python</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">GitHub Actions</span>
-              <span class="tag">RSS</span>
-              <span class="tag tag--solo">個人開発</span>
+        <div class="project-entry">
+          <a class="project-item" href="https://github.com/HK-Kazuma/AI-dailynews.git" target="_blank">
+            <div>
+              <p class="project-name">Daily News Digest</p>
+              <p class="project-desc">
+                毎朝7時に興味のあるトピックのニュースをGmailに自動送信するツール。
+                GitHub Actionsで定期実行し、Claude Haiku APIで記事の選定・要約・翻訳を行う。
+              </p>
+              <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">Claude API</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">RSS</span>
+                <span class="tag tag--solo">個人開発</span>
+              </div>
+            </div>
+            <span class="project-arrow">↗</span>
+          </a>
+          <div class="project-detail">
+            <div class="project-detail-section">
+              <p class="project-detail-heading">なぜ作ったか</p>
+              <p class="project-detail-text">
+                研究テーマを決めるための情報収集と、最新技術に日常的に触れたいという2つの動機がある。AI関連の最新情報を得ることで、世界的な潮流を把握し、今求められていることや懸念点を抽出して自分の身の回りの課題と結びつけることで、解決すべきテーマを見出すことを目的とした。
+              </p>
+            </div>
+            <div class="project-detail-section">
+              <p class="project-detail-heading">工夫した点</p>
+              <p class="project-detail-text">
+                グローバルなニュースと日本のニュースを同程度のバランスで取得するよう調整した。ニュースの数が多すぎると読む意欲が薄れてしまうため、継続を目的として負担のない量に絞る設計にした。
+              </p>
             </div>
           </div>
-          <span class="project-arrow">↗</span>
-        </a>
+        </div>
 
-        <a class="project-item" href="#" target="_blank">
-          <div>
-            <p class="project-name">目覚まし同盟</p>
-            <p class="project-desc">
-              グループで起床を管理するアラームアプリ。起床確認後にアプリをブロックする機能を実装。
-              iOS / Android対応予定。
-            </p>
-            <div class="project-stack">
-              <span class="tag">React Native</span>
-              <span class="tag">Expo</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">Firebase</span>
-              <span class="tag tag--solo">個人開発</span>
-              <span class="tag tag--wip">開発中</span>
+        <div class="project-entry">
+          <a class="project-item" href="#" target="_blank">
+            <div>
+              <p class="project-name">目覚まし同盟</p>
+              <p class="project-desc">
+                グループで起床を管理するアラームアプリ。起床確認後にアプリをブロックする機能を実装。
+                iOS / Android対応予定。
+              </p>
+              <div class="project-stack">
+                <span class="tag">React Native</span>
+                <span class="tag">Expo</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">Firebase</span>
+                <span class="tag tag--solo">個人開発</span>
+                <span class="tag tag--wip">開発中</span>
+              </div>
+            </div>
+            <span class="project-arrow">↗</span>
+          </a>
+          <div class="project-detail">
+            <div class="project-detail-section">
+              <p class="project-detail-heading">なぜ作ったか</p>
+              <p class="project-detail-text">
+                朝起きられない原因のひとつに、他者からの監視がないことが挙げられる。実家では親が起こしに来るという要因が起床につながるが、一人暮らしでは起床が完全に自己管理となり、難しいと感じる人が多い。同じ時間に起きる人たちとつながり、互いに監視し合う状態を作ることで起床を促すアプリを開発している。
+              </p>
+            </div>
+            <div class="project-detail-section">
+              <p class="project-detail-heading">工夫した点</p>
+              <p class="project-detail-text">
+                就寝時や起床時に手が届きやすいスマホで使うことを前提に開発。起床後にだらだらスマホを触ることを防ぐため、SNS系アプリを制限する機能を追加。さらに起床後のタスクを表示させることで、朝の時間を有効に使えるよう設計している。
+              </p>
             </div>
           </div>
-          <span class="project-arrow">↗</span>
-        </a>
+        </div>
 
-        <a class="project-item" href="#" target="_blank">
-          <div>
-            <p class="project-name">Feynman Learning App</p>
-            <p class="project-desc">
-              「AIに教える」ことで理解を深めるフェインマン学習法アプリ。
-              LLMが知識と理解度を2段階で評価する仕組みを実装予定。
-            </p>
-            <div class="project-stack">
-              <span class="tag">Next.js</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Gemini API</span>
-              <span class="tag tag--solo">個人開発</span>
-              <span class="tag tag--wip">開発中</span>
+        <div class="project-entry">
+          <a class="project-item" href="#" target="_blank">
+            <div>
+              <p class="project-name">Feynman Learning App</p>
+              <p class="project-desc">
+                「AIに教える」ことで理解を深めるフェインマン学習法アプリ。
+                LLMが知識と理解度を2段階で評価する仕組みを実装予定。
+              </p>
+              <div class="project-stack">
+                <span class="tag">Next.js</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Claude API</span>
+                <span class="tag">Gemini API</span>
+                <span class="tag tag--solo">個人開発</span>
+                <span class="tag tag--wip">開発中</span>
+              </div>
+            </div>
+            <span class="project-arrow">↗</span>
+          </a>
+          <div class="project-detail">
+            <div class="project-detail-section">
+              <p class="project-detail-heading">なぜ作ったか</p>
+              <p class="project-detail-text">
+                生成AIの普及により思考力の低下が最新の研究で示されている。本来AIの活用は能力向上に貢献すべきだと考えており、その適切な活用方法とは「AIに考えることを丸投げしないこと」である。適切で良質な質問を作ることはAIには難しく、だからこそ質問する力・疑問を生み出す力を人間が鍛えるべきだと考えた。自ら問いを投げることが難しい人に向けて、AIが問いを出し思考を補助することで、思考力を維持・向上させることを目的としている。
+              </p>
+            </div>
+            <div class="project-detail-section">
+              <p class="project-detail-heading">工夫した点</p>
+              <p class="project-detail-text">
+                勉強したい内容についてスムーズにやり取りできるよう、チャット形式の応答を採用。テキストの画像や資料をアップロードできる機能や、勉強内容ごとに分けて保管・管理できるユーザー作成ノート機能を実装予定。
+              </p>
             </div>
           </div>
-          <span class="project-arrow">↗</span>
-        </a>
+        </div>
 
-        <a class="project-item" href="#" target="_blank">
-          <div>
-            <p class="project-name">AI料理提案アプリ</p>
-            <p class="project-desc">
-              冷蔵庫の食材写真をもとにAIがレシピを生成するPWAアプリ。4人チーム開発。設計段階から参加。
-            </p>
-            <div class="project-stack">
-              <span class="tag">TypeScript</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Gemini API</span>
-              <span class="tag">PWA</span>
-              <span class="tag tag--team">チーム開発</span>
-              <span class="tag tag--wip">開発中</span>
+        <div class="project-entry">
+          <a class="project-item" href="#" target="_blank">
+            <div>
+              <p class="project-name">AI料理提案アプリ</p>
+              <p class="project-desc">
+                冷蔵庫の食材写真をもとにAIがレシピを生成するPWAアプリ。4人チーム開発。設計段階から参加。
+              </p>
+              <div class="project-stack">
+                <span class="tag">TypeScript</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">Gemini API</span>
+                <span class="tag">PWA</span>
+                <span class="tag tag--team">チーム開発</span>
+                <span class="tag tag--wip">開発中</span>
+              </div>
+            </div>
+            <span class="project-arrow">↗</span>
+          </a>
+          <div class="project-detail">
+            <div class="project-detail-section">
+              <p class="project-detail-heading">なぜ作ったか</p>
+              <p class="project-detail-text">
+                Meatlistでのチーム開発経験を活かし、より本格的なプロダクト開発に挑戦するため。毎日の献立を考えるのが大変な主婦や一人暮らしの社会人・学生に向けて自炊をサポートし、買ったものの使い切れず冷蔵庫に眠ったままになる食材を減らすことを目的としている。
+              </p>
+            </div>
+            <div class="project-detail-section">
+              <p class="project-detail-heading">工夫した点</p>
+              <p class="project-detail-text">
+                チーム開発のため、DB設計に基礎から関与することでデータの受け渡しに齟齬が生じないようにした。技術スタックは個人開発で経験のあったFastAPIやGemini APIを提案し、チーム全体の開発効率を考慮して選定した。
+              </p>
             </div>
           </div>
-          <span class="project-arrow">↗</span>
-        </a>
+        </div>
 
       </div>
     </section>
