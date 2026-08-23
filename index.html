@@ -44,6 +44,7 @@
       border-bottom: 1px solid var(--line);
       opacity: 0;
       animation: fadeUp 0.6s ease forwards;
+      gap: 1rem;
     }
 
     .nav-logo {
@@ -52,6 +53,12 @@
       letter-spacing: 0.02em;
       text-decoration: none;
       color: var(--fg);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
     }
 
     .nav-links {
@@ -69,6 +76,51 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--fg); }
+
+    /* ── Language switch ── */
+    .lang-toggle {
+      position: relative;
+      width: 60px;
+      height: 28px;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--tag-bg);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 27px;
+      height: 20px;
+      border-radius: 999px;
+      background: var(--fg);
+      transition: transform 0.25s ease;
+    }
+
+    .lang-toggle[aria-pressed="true"] .lang-toggle-thumb {
+      transform: translateX(27px);
+    }
+
+    .lang-toggle-option {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      transition: color 0.25s ease;
+      user-select: none;
+    }
+
+    .lang-toggle[aria-pressed="false"] .lang-toggle-option--ja { color: #fff; }
+    .lang-toggle[aria-pressed="true"] .lang-toggle-option--en { color: #fff; }
 
     /* ── Hero ── */
     .hero {
@@ -330,6 +382,8 @@
     @media (max-width: 500px) {
       .skill-row { flex-direction: column; gap: 0.4rem; }
       .skill-category { min-width: unset; }
+      .nav-right { gap: 1rem; }
+      .nav-links { gap: 1.2rem; }
     }
   </style>
 </head>
@@ -338,23 +392,30 @@
 
     <nav>
       <a class="nav-logo" href="#">Kazuma</a>
-      <ul class="nav-links">
-        <li><a href="#projects">Works</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#projects">Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button type="button" id="langToggle" class="lang-toggle" aria-pressed="false" aria-label="Switch to English">
+          <span class="lang-toggle-thumb"></span>
+          <span class="lang-toggle-option lang-toggle-option--ja">JA</span>
+          <span class="lang-toggle-option lang-toggle-option--en">EN</span>
+        </button>
+      </div>
     </nav>
 
     <div class="hero">
       <p class="hero-label">Portfolio</p>
       <h1>Building things<br>with curiosity.</h1>
-      <p class="hero-desc">
+      <p class="hero-desc" data-en="3rd-year student, Dept. of Information Engineering, Faculty of Engineering, Kyoto Tachibana University — Class of 2028 / Kazuma Hamada">
         京都橘大学 工学部 情報工学科 3年生 28卒　濱田和磨-Kazuma Hamada
       </p>
     </div>
 
     <section id="about">
       <p class="section-label">About</p>
-      <p class="about-text">
+      <p class="about-text" data-en="Majoring in Information Engineering at Kyoto Tachibana University. The rapid evolution of generative AI sparked a deep interest in AI and machine learning, leading me to earn the G Kentei certification. I'm building development experience by actually building products and confronting the challenges that only become visible through that process. My goal is to work globally in the AI field, so I'm also studying English along the way.">
         京都橘大学で情報系を専攻。生成AIの進化をきっかけにAI・機械学習への関心が深まり、
         G検定取得、実際にプロダクトを作ることでしか見えてこない課題と向き合いながら開発経験を積んでいます。
         将来はAI分野でグローバルに活躍することを目標に、英語学習にも取り組み中。
@@ -409,7 +470,7 @@
           <a class="project-item" href="https://github.com/geekcamp-meatpie/meatlist.git" target="_blank">
             <div>
               <p class="project-name">Meatlist</p>
-              <p class="project-desc">
+              <p class="project-desc" data-en="A web app that reads handwritten notes with AI-OCR and automatically converts them into tasks using an LLM. My first team-development project.">
                 手書きメモをAI-OCRで読み取り、LLMがタスクに自動変換するwebアプリ。
                 初めてのチーム開発プロジェクトでの作品。
               </p>
@@ -417,21 +478,21 @@
                 <span class="tag">Python</span>
                 <span class="tag">OCR</span>
                 <span class="tag">LLM</span>
-                <span class="tag tag--team">チーム開発</span>
+                <span class="tag tag--team" data-en="Team">チーム開発</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
           <div class="project-detail">
             <div class="project-detail-section">
-              <p class="project-detail-heading">なぜ作ったか</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="I started this project because I wanted to try building a product as a team. Since tackling a product that solves a major social issue felt like a high bar, I focused on a problem close to home: the burden of rewriting notes I'd jotted down by hand — in situations where I couldn't use a computer — back into a computer later. That frustration is what led to this product.">
                 チームでプロダクトを作ってみたいという思いから開発を始めた。社会問題を解決するプロダクトを作るのはハードルが高いため、身の回りの課題に着目。パソコンが使えない状況でメモ帳に書いたメモを、後からパソコンでまとめ直す作業が負担に感じていたことから、本プロダクトの開発に至った。
               </p>
             </div>
             <div class="project-detail-section">
-              <p class="project-detail-heading">工夫した点</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="With only two weeks for development, we built on Python since every team member already had experience with it. For handwriting recognition, we used AI-powered OCR instead of conventional OCR technology to improve recognition accuracy.">
                 開発期間が2週間という制限があったため、チームメンバー全員が経験のあるPythonをベースに開発を進めた。手書き文字の認識には従来のOCR技術ではなく、最新のAIを活用したOCRを採用し、認識精度の向上を図った。
               </p>
             </div>
@@ -442,7 +503,7 @@
           <a class="project-item" href="https://github.com/HK-Kazuma/AI-dailynews.git" target="_blank">
             <div>
               <p class="project-name">Daily News Digest</p>
-              <p class="project-desc">
+              <p class="project-desc" data-en="A tool that automatically sends news on topics I'm interested in to Gmail every morning at 7 AM. It runs on a schedule via GitHub Actions, with the Claude Haiku API handling article selection, summarization, and translation.">
                 毎朝7時に興味のあるトピックのニュースをGmailに自動送信するツール。
                 GitHub Actionsで定期実行し、Claude Haiku APIで記事の選定・要約・翻訳を行う。
               </p>
@@ -451,21 +512,21 @@
                 <span class="tag">Claude API</span>
                 <span class="tag">GitHub Actions</span>
                 <span class="tag">RSS</span>
-                <span class="tag tag--solo">個人開発</span>
+                <span class="tag tag--solo" data-en="Solo">個人開発</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
           <div class="project-detail">
             <div class="project-detail-section">
-              <p class="project-detail-heading">なぜ作ったか</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="There were two motivations: gathering information to decide on a research topic, and wanting daily exposure to the latest technology. By staying on top of the latest AI news, I aimed to grasp global trends, identify what's currently in demand or concerning, and connect that to problems around me — ultimately to find a theme worth solving.">
                 研究テーマを決めるための情報収集と、最新技術に日常的に触れたいという2つの動機がある。AI関連の最新情報を得ることで、世界的な潮流を把握し、今求められていることや懸念点を抽出して自分の身の回りの課題と結びつけることで、解決すべきテーマを見出すことを目的とした。
               </p>
             </div>
             <div class="project-detail-section">
-              <p class="project-detail-heading">工夫した点</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="I tuned the tool to fetch a balanced mix of global and Japanese news. Too many articles kills the motivation to read, so I designed it to keep the volume light enough to sustain as a daily habit.">
                 グローバルなニュースと日本のニュースを同程度のバランスで取得するよう調整した。ニュースの数が多すぎると読む意欲が薄れてしまうため、継続を目的として負担のない量に絞る設計にした。
               </p>
             </div>
@@ -476,7 +537,7 @@
           <a class="project-item" href="https://github.com/HK-Kazuma/F1-prediction_app" target="_blank">
             <div>
               <p class="project-name">F1-Prediction-app</p>
-              <p class="project-desc">
+              <p class="project-desc" data-en="An app that predicts Formula 1 race results. Using historical race data, the AI predicts each driver's finishing position.">
                 Fomular1のレース結果を予測するアプリ。過去のレースデータをもとに、AIが各ドライバーの順位を予測する。
               </p>
               <div class="project-stack">
@@ -486,22 +547,22 @@
                 <span class="tag">OpenF1</span>
                 <span class="tag">FastAPI</span>
                 <span class="tag">Streamlit</span>
-                <span class="tag tag--solo">個人開発</span>
-                <span class="tag tag--wip">継続開発中</span>
+                <span class="tag tag--solo" data-en="Solo">個人開発</span>
+                <span class="tag tag--wip" data-en="Ongoing">継続開発中</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
           <div class="project-detail">
             <div class="project-detail-section">
-              <p class="project-detail-heading">なぜ作ったか</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="I wanted to build something that combined my hobby with technology I'm interested in. The idea came from an F1-related GitHub repository I came across on LinkedIn.">
                 自分の趣味と興味のある技術を組み合わせて何かプロダクトを作りたかったから。LinkedInで見かけたF1に関するプロダクトのGithubリポジトリから本アイデアを思い付いた。
               </p>
             </div>
             <div class="project-detail-section">
-              <p class="project-detail-heading">工夫した点</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="To improve the prediction model's accuracy, I focused heavily on feature engineering. Since race data is massive, I chose a model that supports parallel processing. In F1 especially, the amount of data varies by driver, and race conditions change frequently — meaning data can sometimes be insufficient or structurally inconsistent. I judged this model to be the best fit for minimizing the preprocessing burden.">
                 予測モデルの精度を上げるため、特徴量エンジニアリングに注力した。レースデータが膨大なため、並列処理ができるモデルを採用。特にF1ではドライバーによってデータの量が違う。またレース状況も変わりやすいため、十分なデータを取れない場合や、データの構造が不揃いになることもある。そのため前処理の負担を減らすために最適と判断。
               </p>
             </div>
@@ -511,8 +572,8 @@
         <div class="project-entry">
           <a class="project-item" href="https://github.com/geekcamp-meatpie/meat-recipe.git" target="_blank">
             <div>
-              <p class="project-name">AI料理提案アプリ</p>
-              <p class="project-desc">
+              <p class="project-name" data-en="AI Recipe Suggestion App">AI料理提案アプリ</p>
+              <p class="project-desc" data-en="A PWA app where AI generates recipes from a photo of what's in your fridge. Built with a 4-person team; I was involved from the design phase.">
                 冷蔵庫の食材写真をもとにAIがレシピを生成するPWAアプリ。4人チーム開発。設計段階から参加。
               </p>
               <div class="project-stack">
@@ -520,22 +581,22 @@
                 <span class="tag">FastAPI</span>
                 <span class="tag">Gemini API</span>
                 <span class="tag">PWA</span>
-                <span class="tag tag--team">チーム開発</span>
-                <span class="tag tag--wip">開発中</span>
+                <span class="tag tag--team" data-en="Team">チーム開発</span>
+                <span class="tag tag--wip" data-en="In Progress">開発中</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
           <div class="project-detail">
             <div class="project-detail-section">
-              <p class="project-detail-heading">なぜ作ったか</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="I wanted to build on my team-development experience from Meatlist and take on a more serious product. It's aimed at homemakers and people living alone — students and working adults — who struggle to plan daily meals, supporting home cooking and reducing the food that goes unused and sits forgotten in the fridge.">
                 Meatlistでのチーム開発経験を活かし、より本格的なプロダクト開発に挑戦するため。毎日の献立を考えるのが大変な主婦や一人暮らしの社会人・学生に向けて自炊をサポートし、買ったものの使い切れず冷蔵庫に眠ったままになる食材を減らすことを目的としている。
               </p>
             </div>
             <div class="project-detail-section">
-              <p class="project-detail-heading">工夫した点</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="Since this was a team project, I got involved in the database design from the ground up to prevent mismatches in how data was passed around. I proposed FastAPI and the Gemini API — technologies I'd already used in solo projects — chosen with the whole team's development efficiency in mind.">
                 チーム開発のため、DB設計に基礎から関与することでデータの受け渡しに齟齬が生じないようにした。技術スタックは個人開発で経験のあったFastAPIやGemini APIを提案し、チーム全体の開発効率を考慮して選定した。
               </p>
             </div>
@@ -545,8 +606,8 @@
         <div class="project-entry">
           <a class="project-item" href="https://github.com/HK-Kazuma/alarm-app.git" target="_blank">
             <div>
-              <p class="project-name">目覚まし同盟</p>
-              <p class="project-desc">
+              <p class="project-name" data-en="Wake-Up Alliance">目覚まし同盟</p>
+              <p class="project-desc" data-en="An alarm app for managing wake-up times as a group. Implements a feature that blocks other apps until wake-up is confirmed. iOS / Android support planned.">
                 グループで起床を管理するアラームアプリ。起床確認後にアプリをブロックする機能を実装。
                 iOS / Android対応予定。
               </p>
@@ -556,22 +617,22 @@
                 <span class="tag">FastAPI</span>
                 <span class="tag">Supabase</span>
                 <span class="tag">Firebase</span>
-                <span class="tag tag--solo">個人開発</span>
-                <span class="tag tag--wip">開発中</span>
+                <span class="tag tag--solo" data-en="Solo">個人開発</span>
+                <span class="tag tag--wip" data-en="In Progress">開発中</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
           <div class="project-detail">
             <div class="project-detail-section">
-              <p class="project-detail-heading">なぜ作ったか</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="One reason people struggle to wake up in the morning is the lack of anyone watching over them. Living at home, a parent coming to wake you up helps — but living alone makes waking up entirely self-managed, which many people find hard. I'm building an app that connects people who wake up at the same time so they can keep each other in check and encourage one another to get up.">
                 朝起きられない原因のひとつに、他者からの監視がないことが挙げられる。実家では親が起こしに来るという要因が起床につながるが、一人暮らしでは起床が完全に自己管理となり、難しいと感じる人が多い。同じ時間に起きる人たちとつながり、互いに監視し合う状態を作ることで起床を促すアプリを開発している。
               </p>
             </div>
             <div class="project-detail-section">
-              <p class="project-detail-heading">工夫した点</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="Built around the assumption that a phone is what's within reach at bedtime and wake-up time. To prevent aimlessly scrolling after waking up, I added a feature that restricts social media apps. It also displays post-wake-up tasks, designed to help make good use of the morning.">
                 就寝時や起床時に手が届きやすいスマホで使うことを前提に開発。起床後にだらだらスマホを触ることを防ぐため、SNS系アプリを制限する機能を追加。さらに起床後のタスクを表示させることで、朝の時間を有効に使えるよう設計している。
               </p>
             </div>
@@ -582,7 +643,7 @@
           <a class="project-item" href="https://github.com/HK-Kazuma/Feynman-Learning-App.git" target="_blank">
             <div>
               <p class="project-name">Feynman Learning App</p>
-              <p class="project-desc">
+              <p class="project-desc" data-en="A Feynman-technique learning app that deepens understanding by 'teaching an AI.' Planning to implement a two-stage evaluation where the LLM assesses both knowledge and comprehension.">
                 「AIに教える」ことで理解を深めるフェインマン学習法アプリ。
                 LLMが知識と理解度を2段階で評価する仕組みを実装予定。
               </p>
@@ -591,22 +652,22 @@
                 <span class="tag">FastAPI</span>
                 <span class="tag">Claude API</span>
                 <span class="tag">Gemini API</span>
-                <span class="tag tag--solo">個人開発</span>
-                <span class="tag tag--wip">開発中</span>
+                <span class="tag tag--solo" data-en="Solo">個人開発</span>
+                <span class="tag tag--wip" data-en="In Progress">開発中</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
           <div class="project-detail">
             <div class="project-detail-section">
-              <p class="project-detail-heading">なぜ作ったか</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="Recent research shows that the spread of generative AI is linked to a decline in critical thinking. I believe AI use should actually contribute to improving our abilities, and that the right way to use it is to never hand off all the thinking to it. Crafting good, well-formed questions is hard for AI, which is exactly why humans should be the ones sharpening their ability to question and to generate doubts. This app is aimed at people who find it hard to come up with questions on their own — the AI poses questions to support their thinking, with the goal of maintaining and improving their capacity to think.">
                 生成AIの普及により思考力の低下が最新の研究で示されている。本来AIの活用は能力向上に貢献すべきだと考えており、その適切な活用方法とは「AIに考えることを丸投げしないこと」である。適切で良質な質問を作ることはAIには難しく、だからこそ質問する力・疑問を生み出す力を人間が鍛えるべきだと考えた。自ら問いを投げることが難しい人に向けて、AIが問いを出し思考を補助することで、思考力を維持・向上させることを目的としている。
               </p>
             </div>
             <div class="project-detail-section">
-              <p class="project-detail-heading">工夫した点</p>
-              <p class="project-detail-text">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="Adopted a chat-style interface so users can interact smoothly about what they're studying. Planning to add the ability to upload images or documents of text, plus a user-created notes feature that organizes and manages content by topic.">
                 勉強したい内容についてスムーズにやり取りできるよう、チャット形式の応答を採用。テキストの画像や資料をアップロードできる機能や、勉強内容ごとに分けて保管・管理できるユーザー作成ノート機能を実装予定。
               </p>
             </div>
@@ -619,12 +680,12 @@
       <p class="section-label">Certifications</p>
       <div class="cert-list">
         <div class="cert-item">
-          <span class="cert-name">G検定（ジェネラリスト検定）</span>
+          <span class="cert-name" data-en="G Kentei (JDLA Generalist Certification)">G検定（ジェネラリスト検定）</span>
           <span class="cert-year">JDLA</span>
         </div>
         <div class="cert-item">
-          <span class="cert-name">2級建築施工管理技士補</span>
-          <span class="cert-year">国家資格</span>
+          <span class="cert-name" data-en="Assistant Construction Management Engineer, Grade 2">2級建築施工管理技士補</span>
+          <span class="cert-year" data-en="National Qualification (Japan)">国家資格</span>
         </div>
       </div>
     </section>
@@ -636,7 +697,7 @@
           <span class="contact-link-label">GitHub</span>
           <span>https://github.com/hk-kazuma</span>
         </a>
-        <a class="contact-link" href="mailto:your@email.com">
+        <a class="contact-link" href="mailto:astonmartin3924@gmail.com">
           <span class="contact-link-label">Email</span>
           <span>astonmartin3924@gmail.com</span>
         </a>
@@ -652,5 +713,42 @@
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'site-lang';
+      var toggleBtn = document.getElementById('langToggle');
+
+      function setLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-en]').forEach(function (el) {
+          if (!el.dataset.ja) {
+            el.dataset.ja = el.textContent;
+          }
+          el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ja;
+        });
+      }
+
+      function applyLang(lang) {
+        setLang(lang);
+        toggleBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+        toggleBtn.setAttribute('aria-label', lang === 'en' ? 'Switch to Japanese' : 'Switch to English');
+        try {
+          localStorage.setItem(STORAGE_KEY, lang);
+        } catch (e) {}
+      }
+
+      toggleBtn.addEventListener('click', function () {
+        var current = document.documentElement.lang === 'en' ? 'en' : 'ja';
+        applyLang(current === 'en' ? 'ja' : 'en');
+      });
+
+      var saved = 'ja';
+      try {
+        saved = localStorage.getItem(STORAGE_KEY) || 'ja';
+      } catch (e) {}
+      applyLang(saved);
+    })();
+  </script>
 </body>
 </html>
