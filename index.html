@@ -472,11 +472,59 @@
       color: inherit;
     }
 
+    .project-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
     .project-name {
       font-family: 'DM Serif Display', serif;
       font-size: 1.15rem;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0;
       color: #f4f5f7;
+    }
+
+    /* Where the product was built — separate from stack / status tags */
+    .project-place {
+      align-self: center;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+      padding: 0.24rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .project-place::before {
+      content: "\25C8";
+      margin-right: 0.4em;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+    .project-place--hackathon {
+      color: #f0c07a;
+      background: rgba(232, 180, 95, 0.14);
+      border-color: rgba(232, 180, 95, 0.42);
+    }
+    .project-place--personal {
+      color: #9dd6e4;
+      background: rgba(127, 196, 214, 0.14);
+      border-color: rgba(127, 196, 214, 0.42);
+    }
+    .project-place--intern {
+      color: #c7b1ec;
+      background: rgba(183, 156, 224, 0.16);
+      border-color: rgba(183, 156, 224, 0.44);
+    }
+    .project-place--team {
+      color: #a3d9b1;
+      background: rgba(143, 206, 159, 0.14);
+      border-color: rgba(143, 206, 159, 0.42);
     }
 
     .project-desc {
@@ -501,18 +549,6 @@
       color: #aeb3bd;
       background: transparent;
       border: 1px solid var(--line);
-    }
-
-    .tag--team {
-      color: #8fce9f !important;
-      border-color: rgba(143, 206, 159, 0.4) !important;
-      background: rgba(143, 206, 159, 0.10) !important;
-    }
-
-    .tag--solo {
-      color: #9fb4e0 !important;
-      border-color: rgba(159, 180, 224, 0.4) !important;
-      background: rgba(159, 180, 224, 0.10) !important;
     }
 
     .tag--wip {
@@ -788,18 +824,21 @@
       <div class="projects">
 
         <div class="project-entry">
-          <a class="project-item" href="https://github.com/geekcamp-meatpie/meatlist.git" target="_blank">
+          <a class="project-item" href="https://github.com/HK-Kazuma/rakuraku-chatapp" target="_blank">
             <div>
-              <p class="project-name">Meatlist</p>
-              <p class="project-desc" data-en="A web app that reads handwritten notes with AI-OCR and automatically converts them into tasks using an LLM. My first team-development project.">
-                手書きメモをAI-OCRで読み取り、LLMがタスクに自動変換するwebアプリ。
-                初めてのチーム開発プロジェクトでの作品。
+              <div class="project-head">
+                <p class="project-name" data-en="Rakuraku Shinsotsu Chat">楽楽新卒Chat</p>
+                <span class="project-place project-place--intern" data-en="Internship">インターン</span>
+              </div>
+              <p class="project-desc" data-en="A chat app for new-grad recruiting staff, built during a 3-day internship — from persona design through requirements definition based on client interviews. I was mainly responsible for the frontend implementation.">
+                新卒採用担当者をターゲットにしたチャットアプリ。3日間のインターンで、顧客ヒアリングをもとにペルソナ設計から要件定義まで行い開発した。
+                主にフロントエンド実装を担当。
               </p>
               <div class="project-stack">
-                <span class="tag">Python</span>
-                <span class="tag">OCR</span>
-                <span class="tag">LLM</span>
-                <span class="tag tag--team" data-en="Team">チーム開発</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">Vuetify</span>
+                <span class="tag">Socket.IO</span>
+                <span class="tag">Vite</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
@@ -807,14 +846,52 @@
           <div class="project-detail">
             <div class="project-detail-section">
               <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
-              <p class="project-detail-text" data-en="I started this project because I wanted to try building a product as a team. Since tackling a product that solves a major social issue felt like a high bar, I focused on a problem close to home: the burden of rewriting notes I'd jotted down by hand — in situations where I couldn't use a computer — back into a computer later. That frustration is what led to this product.">
-                チームでプロダクトを作ってみたいという思いから開発を始めた。社会問題を解決するプロダクトを作るのはハードルが高いため、身の回りの課題に着目。パソコンが使えない状況でメモ帳に書いたメモを、後からパソコンでまとめ直す作業が負担に感じていたことから、本プロダクトの開発に至った。
+              <p class="project-detail-text" data-en="A 3-day internship project to build a chat app for new-grad recruiting staff, designing personas and requirements around what the target users actually needed. In that short timeframe, we dug into where the client's workflow had bottlenecks and what 'thoughtful support' meant to them, moving discussions forward by setting assumptions on anything unclear. I learned that real problem-solving means digging past surface-level complaints to the deeper goal behind them.">
+                新卒採用担当者をターゲットに、ペルソナやアプリ要件からターゲットが本当に求めるチャットアプリを開発するインターン課題。顧客の業務フローのどこにボトルネックがあるか、顧客の言う「丁寧な対応」とは何かを3日間という短い時間の中で突き詰め、曖昧な点は仮定を置いて議論を前に進めることを意識した。表面的な課題ではなく、顧客が困っていることの奥にある本当の目的まで深掘りすることが本当の課題解決だと学んだ。
               </p>
             </div>
             <div class="project-detail-section">
               <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
-              <p class="project-detail-text" data-en="With only two weeks for development, we built on Python since every team member already had experience with it. For handwriting recognition, we used AI-powered OCR instead of conventional OCR technology to improve recognition accuracy.">
-                開発期間が2週間という制限があったため、チームメンバー全員が経験のあるPythonをベースに開発を進めた。手書き文字の認識には従来のOCR技術ではなく、最新のAIを活用したOCRを採用し、認識精度の向上を図った。
+              <p class="project-detail-text" data-en="As the lead on frontend implementation, I also took on interview note-taking and building presentation materials — without a specialized skill of my own, I focused on scanning the whole project for open roles and stepping into them. Given the short timeline, I prioritized thorough discussion at the planning stage to avoid rework later.">
+                フロントエンド実装を主担当としつつ、ヒアリング時の書記や発表資料作成など、特化したスキルがないからこそ全体を俯瞰して空いている役割を率先して引き受けるようにした。短い開発期間で手戻りを避けるため、プランニング段階での議論に特に注力した。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <a class="project-item" href="https://github.com/HK-Kazuma/Samurai-meet_demo" target="_blank">
+            <div>
+              <div class="project-head">
+                <p class="project-name">Samurai Meet</p>
+                <span class="project-place project-place--hackathon" data-en="Hackathon">ハッカソン</span>
+              </div>
+              <p class="project-desc" data-en="A real-time matching app connecting visiting foreigners with Japanese locals for in-person meetups, built by a 6-person team over about 3 weeks. I worked on the backend, including location-based real-time proximity matching and chat.">
+                来日外国人と日本人がリアルで交流できるマッチングアプリ。6人チームで約3週間かけて開発。
+                バックエンドを担当し、位置情報を用いたリアルタイム近接マッチングとチャット機能を実装。
+              </p>
+              <div class="project-stack">
+                <span class="tag">Go</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">WebTransport</span>
+                <span class="tag">WebSocket</span>
+                <span class="tag">Expo</span>
+              </div>
+            </div>
+            <span class="project-arrow">↗</span>
+          </a>
+          <div class="project-detail">
+            <div class="project-detail-section">
+              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
+              <p class="project-detail-text" data-en="Built by a 6-person team over about 3 weeks for a hackathon themed 'Connect the AI era, create new value.' Drawing on the team's own experience and a survey, we focused on the psychological barrier of wanting to talk to foreigners but being too scared or anxious to approach them, aiming to turn that into real in-person interaction.">
+                「AI時代をつなぐ、新しい価値を創れ」というテーマのもと、6人チームで約3週間かけて開発したハッカソン作品。チームの経験とアンケートから、「外国人と話したいが、話しかけるのが怖い・不安」という心理的障壁に着目し、実際の交流につなげることを目指した。
+              </p>
+            </div>
+            <div class="project-detail-section">
+              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
+              <p class="project-detail-text" data-en="I built the backend with Go, PostgreSQL, and HTTP/3 WebTransport, and worked with one other member to implement real-time proximity matching based on location data. For safety, we never show raw location — instead we display area-based counts like '3 people within 500m.' Chat was implemented with WebSocket using a hub pattern for real-time communication. With only 3 weeks to finish, we prioritized features and scoped the implementation accordingly.">
+                バックエンドはGo・PostgreSQL・HTTP/3 WebTransportで構築し、メンバーと2人で位置情報を用いたリアルタイム近接マッチングを実装。位置情報を直接表示せず「500m以内に3人」のようにエリア単位で表示する安全設計を採用した。チャット機能はWebSocketとHubパターンでリアルタイム通信を実装。3週間という限られた期間で完成させるため、機能の優先順位を決めて実装範囲を取捨選択した。
               </p>
             </div>
           </div>
@@ -823,7 +900,10 @@
         <div class="project-entry">
           <a class="project-item" href="https://github.com/HK-Kazuma/AI-dailynews.git" target="_blank">
             <div>
-              <p class="project-name">Daily News Digest</p>
+              <div class="project-head">
+                <p class="project-name">Daily News Digest</p>
+                <span class="project-place project-place--personal" data-en="Personal">個人</span>
+              </div>
               <p class="project-desc" data-en="A tool that automatically sends news on topics I'm interested in to Gmail every morning at 7 AM. It runs on a schedule via GitHub Actions, with the Claude Haiku API handling article selection, summarization, and translation.">
                 毎朝7時に興味のあるトピックのニュースをGmailに自動送信するツール。
                 GitHub Actionsで定期実行し、Claude Haiku APIで記事の選定・要約・翻訳を行う。
@@ -833,7 +913,6 @@
                 <span class="tag">Claude API</span>
                 <span class="tag">GitHub Actions</span>
                 <span class="tag">RSS</span>
-                <span class="tag tag--solo" data-en="Solo">個人開発</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
@@ -857,7 +936,10 @@
         <div class="project-entry">
           <a class="project-item" href="https://github.com/HK-Kazuma/F1-prediction_app" target="_blank">
             <div>
-              <p class="project-name">F1-Prediction-app</p>
+              <div class="project-head">
+                <p class="project-name">F1-Prediction-app</p>
+                <span class="project-place project-place--personal" data-en="Personal">個人</span>
+              </div>
               <p class="project-desc" data-en="An app that predicts Formula 1 race results. Using historical race data, the AI predicts each driver's finishing position.">
                 Fomular1のレース結果を予測するアプリ。過去のレースデータをもとに、AIが各ドライバーの順位を予測する。
               </p>
@@ -868,7 +950,6 @@
                 <span class="tag">OpenF1</span>
                 <span class="tag">FastAPI</span>
                 <span class="tag">Streamlit</span>
-                <span class="tag tag--solo" data-en="Solo">個人開発</span>
                 <span class="tag tag--wip" data-en="Ongoing">継続開発中</span>
               </div>
             </div>
@@ -893,7 +974,10 @@
         <div class="project-entry">
           <a class="project-item" href="https://github.com/geekcamp-meatpie/meat-recipe.git" target="_blank">
             <div>
-              <p class="project-name" data-en="AI Recipe Suggestion App">AI料理提案アプリ</p>
+              <div class="project-head">
+                <p class="project-name" data-en="AI Recipe Suggestion App">AI料理提案アプリ</p>
+                <span class="project-place project-place--team" data-en="Team">チーム開発</span>
+              </div>
               <p class="project-desc" data-en="A PWA app where AI generates recipes from a photo of what's in your fridge. Built with a 4-person team; I was involved from the design phase.">
                 冷蔵庫の食材写真をもとにAIがレシピを生成するPWAアプリ。4人チーム開発。設計段階から参加。
               </p>
@@ -902,7 +986,6 @@
                 <span class="tag">FastAPI</span>
                 <span class="tag">Gemini API</span>
                 <span class="tag">PWA</span>
-                <span class="tag tag--team" data-en="Team">チーム開発</span>
                 <span class="tag tag--wip" data-en="In Progress">開発中</span>
               </div>
             </div>
@@ -924,76 +1007,6 @@
           </div>
         </div>
 
-        <div class="project-entry">
-          <a class="project-item" href="https://github.com/HK-Kazuma/alarm-app.git" target="_blank">
-            <div>
-              <p class="project-name" data-en="Wake-Up Alliance">目覚まし同盟</p>
-              <p class="project-desc" data-en="An alarm app for managing wake-up times as a group. Implements a feature that blocks other apps until wake-up is confirmed. iOS / Android support planned.">
-                グループで起床を管理するアラームアプリ。起床確認後にアプリをブロックする機能を実装。
-                iOS / Android対応予定。
-              </p>
-              <div class="project-stack">
-                <span class="tag">React Native</span>
-                <span class="tag">Expo</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">Supabase</span>
-                <span class="tag">Firebase</span>
-                <span class="tag tag--solo" data-en="Solo">個人開発</span>
-                <span class="tag tag--wip" data-en="In Progress">開発中</span>
-              </div>
-            </div>
-            <span class="project-arrow">↗</span>
-          </a>
-          <div class="project-detail">
-            <div class="project-detail-section">
-              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
-              <p class="project-detail-text" data-en="One reason people struggle to wake up in the morning is the lack of anyone watching over them. Living at home, a parent coming to wake you up helps — but living alone makes waking up entirely self-managed, which many people find hard. I'm building an app that connects people who wake up at the same time so they can keep each other in check and encourage one another to get up.">
-                朝起きられない原因のひとつに、他者からの監視がないことが挙げられる。実家では親が起こしに来るという要因が起床につながるが、一人暮らしでは起床が完全に自己管理となり、難しいと感じる人が多い。同じ時間に起きる人たちとつながり、互いに監視し合う状態を作ることで起床を促すアプリを開発している。
-              </p>
-            </div>
-            <div class="project-detail-section">
-              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
-              <p class="project-detail-text" data-en="Built around the assumption that a phone is what's within reach at bedtime and wake-up time. To prevent aimlessly scrolling after waking up, I added a feature that restricts social media apps. It also displays post-wake-up tasks, designed to help make good use of the morning.">
-                就寝時や起床時に手が届きやすいスマホで使うことを前提に開発。起床後にだらだらスマホを触ることを防ぐため、SNS系アプリを制限する機能を追加。さらに起床後のタスクを表示させることで、朝の時間を有効に使えるよう設計している。
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-entry">
-          <a class="project-item" href="https://github.com/HK-Kazuma/Feynman-Learning-App.git" target="_blank">
-            <div>
-              <p class="project-name">Feynman Learning App</p>
-              <p class="project-desc" data-en="A Feynman-technique learning app that deepens understanding by 'teaching an AI.' Planning to implement a two-stage evaluation where the LLM assesses both knowledge and comprehension.">
-                「AIに教える」ことで理解を深めるフェインマン学習法アプリ。
-                LLMが知識と理解度を2段階で評価する仕組みを実装予定。
-              </p>
-              <div class="project-stack">
-                <span class="tag">Next.js</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">Claude API</span>
-                <span class="tag">Gemini API</span>
-                <span class="tag tag--solo" data-en="Solo">個人開発</span>
-                <span class="tag tag--wip" data-en="In Progress">開発中</span>
-              </div>
-            </div>
-            <span class="project-arrow">↗</span>
-          </a>
-          <div class="project-detail">
-            <div class="project-detail-section">
-              <p class="project-detail-heading" data-en="Why I built it">なぜ作ったか</p>
-              <p class="project-detail-text" data-en="Recent research shows that the spread of generative AI is linked to a decline in critical thinking. I believe AI use should actually contribute to improving our abilities, and that the right way to use it is to never hand off all the thinking to it. Crafting good, well-formed questions is hard for AI, which is exactly why humans should be the ones sharpening their ability to question and to generate doubts. This app is aimed at people who find it hard to come up with questions on their own — the AI poses questions to support their thinking, with the goal of maintaining and improving their capacity to think.">
-                生成AIの普及により思考力の低下が最新の研究で示されている。本来AIの活用は能力向上に貢献すべきだと考えており、その適切な活用方法とは「AIに考えることを丸投げしないこと」である。適切で良質な質問を作ることはAIには難しく、だからこそ質問する力・疑問を生み出す力を人間が鍛えるべきだと考えた。自ら問いを投げることが難しい人に向けて、AIが問いを出し思考を補助することで、思考力を維持・向上させることを目的としている。
-              </p>
-            </div>
-            <div class="project-detail-section">
-              <p class="project-detail-heading" data-en="Key design choices">工夫した点</p>
-              <p class="project-detail-text" data-en="Adopted a chat-style interface so users can interact smoothly about what they're studying. Planning to add the ability to upload images or documents of text, plus a user-created notes feature that organizes and manages content by topic.">
-                勉強したい内容についてスムーズにやり取りできるよう、チャット形式の応答を採用。テキストの画像や資料をアップロードできる機能や、勉強内容ごとに分けて保管・管理できるユーザー作成ノート機能を実装予定。
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
